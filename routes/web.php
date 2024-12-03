@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Estudiante;
 
 
 Route::get('/', [HomeController::class, 'getHome']);
@@ -18,6 +19,14 @@ Route::get('perfil/{id?}', function($id = null) {
     return $id ? 'Visualizar el currículo de '. $id : 'Visualizar el currículo propio';
 })->where('id', '[0-9]*');
 
+Route::get('pruebaDB', function () {
+    // aquí irán el código que utiliza el modelo
+    $estudiantes = Estudiante::all();
+
+    foreach( $estudiantes as $estudiante ) {
+        echo $estudiante->nombre . '<br />';
+    }
+});
 
 
 
